@@ -1,0 +1,10 @@
+#cloud-config
+locale: en_US.UTF-8
+
+runcmd:
+  - yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  - sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+  - yum -y install wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct pyOpenSSL
+  - yum -y install --enablerepo=epel python-pip python-wheel
+  - pip install --upgrade pip
+  - pip install -Iv ansible==2.6.2 boto
